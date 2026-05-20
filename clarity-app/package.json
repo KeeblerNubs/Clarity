@@ -4,6 +4,7 @@
   "description": "AI-powered digital file organizer",
   "main": "electron/main.js",
   "scripts": {
+    "continuous": "npm run start",
     "start": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "react-start": "react-scripts start",
     "build": "react-scripts build && electron-builder",
