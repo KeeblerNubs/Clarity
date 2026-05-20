@@ -1,0 +1,45 @@
+{
+  "name": "clarity",
+  "version": "1.0.0",
+  "description": "AI-powered digital file organizer",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "react-start": "react-scripts start",
+    "build": "react-scripts build && electron-builder",
+    "react-build": "react-scripts build",
+    "electron": "electron ."
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "electron-store": "^8.1.0",
+    "chokidar": "^3.5.3",
+    "mime-types": "^2.1.35",
+    "date-fns": "^2.30.0",
+    "framer-motion": "^10.16.4",
+    "zustand": "^4.4.1",
+    "clsx": "^2.0.0"
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
+    "concurrently": "^8.2.1",
+    "wait-on": "^7.0.1"
+  },
+  "build": {
+    "appId": "com.clarity.app",
+    "productName": "Clarity",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "files": ["build/**/*", "electron/**/*", "node_modules/**/*"],
+    "directories": { "output": "dist" }
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  }
+}
