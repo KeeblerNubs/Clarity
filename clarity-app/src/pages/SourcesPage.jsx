@@ -31,6 +31,7 @@ function SourceCard({ source, onConnect }) {
 
 export default function SourcesPage() {
   const { sources, connectSource, addWatchedFolder, watchedFolders, removeWatchedFolder } = useStore();
+  const [oauthMessage, setOauthMessage] = React.useState('');
 
   const handleAddFolder = async () => {
     if (!window.electronAPI) {
@@ -41,10 +42,22 @@ export default function SourcesPage() {
     if (folder) addWatchedFolder({ path: folder, name: folder.split(/[\\/]/).pop() });
   };
 
-  const handleConnect = (id) => {
+  const handleConnect = async (id) => {
     if (id === 'google-drive' || id === 'google-photos') {
-      alert('Google OAuth integration is included in Phase 2. Click to mark as connected for now.');
+      if (!window.electronAPI?.startGoogleOAuth) {
+        setOauthMessage('Cloud OAuth requires the Electron desktop runtime.');
+        return;
+      }
+
+      const result = await window.electronAPI.startGoogleOAuth(id);
+      setOauthMessage(result.message || 'Google OAuth response received.');
+
+      if (result.success) {
+        connectSource(id);
+      }
+      return;
     }
+
     connectSource(id);
   };
 
@@ -116,6 +129,7 @@ export default function SourcesPage() {
             <SourceCard key={source.id} source={source} onConnect={handleConnect} />
           ))}
         </div>
+        {oauthMessage ? <p className="sources-section-desc" style={{ marginTop: 12 }}>{oauthMessage}</p> : null}
       </section>
 
       {/* Info banner */}

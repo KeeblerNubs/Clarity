@@ -12,4 +12,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getDrives: () => ipcRenderer.invoke('get-drives'),
   openInExplorer: (path) => ipcRenderer.invoke('open-in-explorer', path),
   getHomeDir: () => ipcRenderer.invoke('get-home-dir'),
+
+  // Cloud connectors
+  getCloudOAuthStatus: () => ipcRenderer.invoke('get-cloud-oauth-status'),
+  startGoogleOAuth: (sourceId) => ipcRenderer.invoke('start-google-oauth', sourceId),
 });
