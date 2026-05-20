@@ -9,7 +9,10 @@
     "react-start": "react-scripts start",
     "build": "react-scripts build && electron-builder",
     "react-build": "react-scripts build",
-    "electron": "electron ."
+    "electron": "electron .",
+    "lint:deps": "npm outdated || true",
+    "update:deps": "npm update",
+    "check": "npm run react-build"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -36,11 +39,25 @@
       "target": "nsis",
       "icon": "assets/icon.ico"
     },
-    "files": ["build/**/*", "electron/**/*", "node_modules/**/*"],
-    "directories": { "output": "dist" }
+    "files": [
+      "build/**/*",
+      "electron/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    }
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

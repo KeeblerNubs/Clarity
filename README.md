@@ -40,6 +40,21 @@ npm run build
 ```
 The installer will be in the `dist/` folder.
 
+### 4. Check and update dependencies
+```bash
+cd clarity-app
+npm run lint:deps
+npm run update:deps
+```
+
+If your environment blocks the npm registry, `lint:deps` will still exit successfully so automation can continue while you troubleshoot access.
+
+### 5. Run health check
+```bash
+cd clarity-app
+npm run check
+```
+
 ---
 
 ## Project Structure
