@@ -28,6 +28,12 @@ npm start
 This starts the React dev server on port 3000 and launches Electron automatically.
 The app opens as a native window with the custom dark UI.
 
+### 2b. Run in continuous mode
+```bash
+npm run continuous
+```
+This is an alias for development mode so you can use a dedicated continuous command in scripts/automation.
+
 ### 3. Build for production (creates a .exe installer)
 ```bash
 npm run build
